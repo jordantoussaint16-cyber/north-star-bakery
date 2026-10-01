@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>North Star Bakery | Contact</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .error-message { display: block; color: #b00020; font-size: 0.9rem; min-height: 1.2em; }
+    .invalid { border: 2px solid #b00020; }
+    #form-success { color: #1b5e20; font-weight: bold; }
+  </style>
 </head>
 <body>
   <header>
@@ -28,15 +33,17 @@
 
     <section aria-labelledby="form-heading">
       <h2 id="form-heading">Inquiry &amp; Pre-Order Request</h2>
-      <form action="#" method="post">
+      <form action="#" method="post" novalidate>
         <fieldset>
           <legend>Contact Information</legend>
 
           <label for="name">Full Name</label>
           <input type="text" id="name" name="name" required minlength="2" placeholder="Jane Doe">
+          <span class="error-message" id="name-error" aria-live="polite"></span>
 
           <label for="email">Email Address</label>
           <input type="email" id="email" name="email" required placeholder="jane@example.com">
+          <span class="error-message" id="email-error" aria-live="polite"></span>
         </fieldset>
 
         <fieldset>
@@ -48,18 +55,22 @@
             <option value="pre-order">Pre-Order</option>
             <option value="general-question">General Question</option>
           </select>
+          <span class="error-message" id="request-type-error" aria-live="polite"></span>
 
           <label for="pickup-date">Preferred Pickup Date</label>
           <input type="date" id="pickup-date" name="pickup-date" required>
+          <span class="error-message" id="pickup-date-error" aria-live="polite"></span>
 
           <label for="item-details">Item Details</label>
           <textarea id="item-details" name="item-details" rows="4" required placeholder="e.g., one signature sourdough loaf, two dozen cinnamon rolls"></textarea>
+          <span class="error-message" id="item-details-error" aria-live="polite"></span>
 
           <label for="allergy-notes">Allergy Notes (if applicable)</label>
           <textarea id="allergy-notes" name="allergy-notes" rows="2" placeholder="e.g., nut allergy, gluten sensitivity"></textarea>
         </fieldset>
 
         <button type="submit">Submit Request</button>
+        <p id="form-success" role="status"></p>
       </form>
     </section>
   </main>
@@ -67,5 +78,7 @@
   <footer>
     <p>&copy; 2026 North Star Bakery. All rights reserved.</p>
   </footer>
+
+  <script src="contact.js"></script>
 </body>
 </html>
